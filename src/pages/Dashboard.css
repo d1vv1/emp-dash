@@ -1,0 +1,22 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 0;
+    height: 100%;
+}
+
+.cover {
+    padding: 1rem 0.3rem;
+    width: 10px;
+    z-index: 9;
+    background: #3C3D37;
+}
+
+.text-box {
+    padding: 1rem;
+    display: flex;
+    border: 1px solid #ECDFCC;
+    background: hsl(70, 5%, 30%);
+    border-radius: 10px;
+}

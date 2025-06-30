@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "Abel";
+    src: url("assets/Abel-Regular.ttf");
+}
+
+* {
+    margin: 0;
+    color: #ECDFCC;
+    font-family: "Abel", serif;
+}
+
+body {
+    background-color: #3C3D37;
+    height: 100vh;
+}

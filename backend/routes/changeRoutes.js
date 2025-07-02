@@ -34,7 +34,6 @@ router.post('/', async (req, res) => {
     const { email } = req.body;
 
     try {
-
         const getUser = db.prepare('SELECT * FROM users WHERE email = ?');
         const user = getUser.get(email);
         console.log(user);
@@ -44,19 +43,19 @@ router.post('/', async (req, res) => {
             return res.status(404).json({ message: 'User Not found' });
         }
 
-        const OTP = generateRandom6DigitOTP();
+        const generatedOTP = generateRandom6DigitOTP();
         const expires = Date.now() + 15 * 60 * 1000;
 
         const updatedDB = db.prepare('UPDATE users SET otp = ?, otp_expires = ? WHERE email = ?;');
-        updatedDB.run(OTP, expires, email);
+        updatedDB.run(generatedOTP, expires, email);
 
-        console.log("OTP Sent:", OTP);
+        console.log("OTP Sent:", generatedOTP);
 
         await sendEmail({
             from: 'divyanshumahi4@gmail.com',
             to: email,
             subject: 'TEST',
-            text: 'OTP: ' + OTP,
+            text: 'OTP: ' + generatedOTP,
         });
 
         res.status(201).json({ message: 'OTP sent to email' });
@@ -69,11 +68,9 @@ router.post('/', async (req, res) => {
 
 
 router.put('/reset-password', (req, res) => {
-    const { email, otp, resetPass,  } = req.body;
+    const { email, otp, resetPass } = req.body;
     console.log(req.body);
     console.log(email, otp, resetPass);
-
-
 
 
     try {

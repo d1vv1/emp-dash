@@ -1,37 +1,13 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useNavigate } from "react-router-dom";
 import './Login.css'
+import { loginSchema } from "../templates/validationSchema.ts";
+import axios from "axios";
 
 export const apiBase = '/';
 
-const schema = z.object({
-    email: z.string()
-        .email({message: "Invalid email address"})
-        .max(43, {message: "Invalid email address"})
-        .refine(
-            (val) => val.endsWith("edvenswatech.com") || val.endsWith("edvenswatech.in"),
-            { message: "Invalid Company email" }
-        ),
-    password: z.string()
-        .min(8, { message: "Password must be at least 8 characters long" })
-        .max(50, { message: "Password is too long" })
-        .refine((val) => /[a-z]/.test(val), {
-            message: "Password must contain at least one lowercase letter",
-        })
-        .refine((val) => /[A-Z]/.test(val), {
-            message: "Password must contain at least one uppercase letter",
-        })
-        .refine((val) => /[0-9]/.test(val), {
-            message: "Password must contain at least one number",
-        })
-        .refine((val) => /[^\w\s]/.test(val), {
-            message: "Password must contain at least one special character",
-        }),
-});
-
-type FormFields = z.infer<typeof schema>
+type FormFields = typeof loginSchema._type;
 
 function Login() {
 
@@ -42,17 +18,15 @@ function Login() {
         handleSubmit,
         setError,
         formState: { errors, isSubmitting }
-    } = useForm<FormFields>({resolver: zodResolver(schema)});
+    } = useForm<FormFields>({resolver: zodResolver(loginSchema)});
 
 
     const onSubmit: SubmitHandler<FormFields> = async (data) => {
         try {
-            const response = await fetch(apiBase + "auth/login", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(data),
-            })
-            const potentialToken = await response.json();
+            const response = await axios.post(apiBase + "auth/login", data, {
+                headers: { "Content-Type": "application/json" }
+            });
+            const potentialToken = response.data;
 
             if (potentialToken.token) {
                 const token = potentialToken.token;

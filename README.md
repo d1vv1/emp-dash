@@ -4,8 +4,90 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Employee Dashboard
+
+This is a full-stack employee dashboard application built with React (TypeScript) for the frontend, Express.js for the backend, and PostgreSQL for data storage. It provides secure authentication, employee management, time tracking, and task management features.
+
+---
+
+### Features
+
+- **JWT Authentication:** Secure login and session management using JSON Web Tokens.
+- **OTP Password Reset:** Password reset via email OTP using Nodemailer.
+- **Employee Time Tracking:** Track employee work hours and attendance.
+- **Task Management:** Assign, update, and monitor tasks for employees.
+- **Robust Validation:** Uses React Hook Form and Zod for frontend form validation.
+- **Modular Architecture:** Scalable codebase with clear separation of concerns.
+
+---
+
+### Tech Stack
+
+- **Frontend:** React (TypeScript), React Hook Form, Zod, Axios, React Router DOM
+- **Backend:** Express.js, Node.js, PostgreSQL
+- **Auth & Security:** JWT, Nodemailer
+
+---
+
+### Folder Structure
+
+- `src/` — Frontend source code (components, pages, styles)
+- `backend/` — Backend API (Express server, routes, middleware)
+- `database/` — PostgreSQL data files
+
+---
+
+### Getting Started
+
+#### Prerequisites
+- Node.js & npm
+- PostgreSQL
+
+#### Setup
+1. **Clone the repository:**
+  ```bash
+  git clone <repo-url>
+  cd app
+  ```
+2. **Install dependencies:**
+  ```bash
+  npm install
+  cd backend && npm install
+  ```
+3. **Configure environment variables:**
+  - Edit `backend/.env` for database and email credentials.
+4. **Start PostgreSQL server** and ensure connection details match `.env`.
+5. **Run the backend server:**
+  ```bash
+  cd backend
+  npm start
+  ```
+6. **Run the frontend app:**
+  ```bash
+  cd ..
+  npm run dev
+  ```
+
+---
+
+### Usage
+
+- Register/login as an employee.
+- Track time and manage tasks from the dashboard.
+- Reset password via OTP email if needed.
+
+---
+
+### Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+### License
+
+This project is licensed under the MIT License.
 
 ## Expanding the ESLint configuration
 

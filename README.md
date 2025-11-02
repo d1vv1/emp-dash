@@ -1,11 +1,6 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-
 ## Employee Dashboard
+
+> **Note:** This project is currently under active development. Features and documentation are being continuously improved and updated.
 
 This is a full-stack employee dashboard application built with React (TypeScript) for the frontend, Express.js for the backend, and PostgreSQL for data storage. It provides secure authentication, employee management, time tracking, and task management features.
 
